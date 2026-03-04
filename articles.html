@@ -249,12 +249,6 @@
   </footer>
 
   <script>
-      // Mobile nav
-    const hb = document.getElementById('hamburger');
-    const nl = document.getElementById('navLinks');
-    hb.addEventListener('click', () => nl.classList.toggle('open'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nl.classList.remove('open')));
-    
     // Scroll reveal
     const revealObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
