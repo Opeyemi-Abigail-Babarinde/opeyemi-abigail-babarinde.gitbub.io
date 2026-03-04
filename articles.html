@@ -121,83 +121,26 @@
     .reveal.visible { opacity: 1; transform: none; }
 
    /* HAMBURGER BASE */
-.hb {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 300;
-}
+   .hb { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; z-index: 300; }
+   .hb span { width: 24px; height: 2px; background: var(--ink); transition: all 0.35s ease; }
 
-.hb span {
-  width: 24px;
-  height: 2px;
-  background: var(--ink);
-  transition: all 0.35s ease;
-}
+   /* Animate to X */
+   .hb.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+   .hb.active span:nth-child(2) { opacity: 0; }
+   .hb.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Animate to X */
-.hb.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
+  /* Overlay */
+  .nav-overlay { position: fixed; inset: 0; background: rgba(17,17,24,0.35); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 198; }
+  .nav-overlay.active { opacity: 1; pointer-events: all; }
 
-.hb.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hb.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* Overlay */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(17,17,24,0.35);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 198;
-}
-
-.nav-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* Mobile Nav */
-@media (max-width: 700px) {
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background: var(--white);
-    flex-direction: column;
-    padding: 6rem 2rem 2rem;
-    gap: 1.5rem;
-    box-shadow: -20px 0 60px rgba(0,0,0,0.08);
-    transition: right 0.4s cubic-bezier(.77,0,.18,1);
-    z-index: 250;
-  }
-
-  .nav-links.open {
-    right: 0;
-  }
-
-  .nav-links a {
-    font-size: 0.95rem;
-    padding: 0.6rem 0;
-  }
-
-  .hb {
-    display: flex;
-  }
+ /* Mobile Nav */
+ @media (max-width: 700px) {
+ .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 1.5rem; box-shadow: -20px 0 60px rgba(0,0,0,0.08); transition: right 0.4s cubic-bezier(.77,0,.18,1); z-index: 250; }
+ .nav-links.open { right: 0; }
+ .nav-links a { font-size: 0.8rem; font-weight: 500; text-decoration: none; color: var(--ink-muted); transition: color 0.2s; padding: 0.4rem 0.8rem; border-radius: 6px;  }
+ .nav-links a.active { color: var(--lilac-deep); background: var(--lilac-soft); }
+ .nav-links a:hover { color: var(--lilac-deep); background: var(--lilac-soft); }
+ .hb { display: flex; }
 }
   </style>
 </head>
