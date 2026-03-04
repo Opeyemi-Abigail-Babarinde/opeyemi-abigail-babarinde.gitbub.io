@@ -63,28 +63,144 @@
     ::-webkit-scrollbar-thumb { background: var(--lilac-mid); border-radius: 4px; }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 9999; isolation: isolate;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 5vw;
-      background: rgba(250,249,247,0.96); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(196,181,244,0.2);
-    }
-    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); text-decoration: none; }
-    .nav-logo span { color: var(--lilac-deep); font-style: italic; }
-    .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
-    .nav-links a { font-size: 0.8rem; font-weight: 500; text-decoration: none; color: var(--ink-muted); transition: color 0.2s; padding: 0.4rem 0.8rem; border-radius: 6px; }
-    .nav-links a:hover { color: var(--lilac-deep); background: var(--lilac-soft); }
-    .nav-links .ncta { background: var(--ink) !important; color: var(--white) !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; }
-    .nav-links .ncta:hover { background: var(--lilac-deep) !important; }
-    .hb { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hb span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
-    
-/* ACTIVE NAV STATE */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(250,249,247,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(196,181,244,0.2);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-logo span {
+  color: var(--lilac-deep);
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.nav-links a:hover,
 .nav-links a.active {
   color: var(--lilac-deep);
   background: var(--lilac-soft);
 }
+
+.nav-links .ncta {
+  background: var(--ink) !important;
+  color: var(--white) !important;
+  padding: 0.5rem 1.2rem !important;
+  margin-left: 0.5rem;
+}
+
+.nav-links .ncta:hover {
+  background: var(--lilac-deep) !important;
+}
+
+/* ── HAMBURGER ── */
+.hb {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 300;
+}
+
+.hb span {
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: all 0.35s ease;
+}
+
+/* Animate to X */
+.hb.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hb.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hb.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,17,24,0.35);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 198;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    padding: 6rem 2rem 2rem;
+    gap: 1.5rem;
+    box-shadow: -20px 0 60px rgba(0,0,0,0.08);
+    transition: right 0.4s cubic-bezier(.77,0,.18,1);
+    z-index: 250;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .hb {
+    display: flex;
+  }
+}
+    
+/* ACTIVE NAV STATE */
+.nav-links a.active { color: var(--lilac-deep); background: var(--lilac-soft); }
 
 section {
   scroll-margin-top: 110px; /* adjust to your nav height */
@@ -340,18 +456,28 @@ section {
 <body>
 
   <!-- NAV -->
-  <nav role="navigation" aria-label="Main navigation">
-    <a class="nav-logo" href="#hero">Ope <span>Babarinde</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#summary">Summary</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#case-studies">Case Studies</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="#contact" class="ncta">Contact</a></li>
-    </ul>
-    <button class="hb" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </nav>
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="#hero">Ope <span>Babarinde</span></a>
+
+  <!-- Hamburger -->
+  <button class="hb" id="hb" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="articles.html">Articles</a></li>
+    <li><a href="#contact" class="ncta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
 
   <!-- ① COVER / HERO -->
   <section id="hero" aria-labelledby="hero-h1">
@@ -876,10 +1002,33 @@ section {
 
   <script>
     // Mobile nav
-    const hb = document.getElementById('hamburger');
-    const nl = document.getElementById('navLinks');
-    hb.addEventListener('click', () => nl.classList.toggle('open'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nl.classList.remove('open')));
+   const hb = document.getElementById('hb');
+   const navLinks = document.getElementById('navLinks');
+const overlay = document.getElementById('navOverlay');
+
+function openNav() {
+  hb.classList.add('active');
+  navLinks.classList.add('open');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNav() {
+  hb.classList.remove('active');
+  navLinks.classList.remove('open');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+hb.addEventListener('click', () => {
+  navLinks.classList.contains('open') ? closeNav() : openNav();
+});
+
+overlay.addEventListener('click', closeNav);
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', closeNav);
+});
 
     // Scroll reveal
     const obs = new IntersectionObserver(entries => {
