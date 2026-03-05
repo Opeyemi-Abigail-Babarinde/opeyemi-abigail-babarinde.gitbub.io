@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Better Documentation Reduces Project Rework in Agile Teams | Opeyemi Abigail Babarinde</title>
+  <meta name="description" content="One of the biggest hidden costs in product development is rework. Learn how structured documentation reduces revision cycles, improves delivery speed, and builds team confidence." />
+  <meta name="author" content="Opeyemi Abigail Babarinde" />
+  <meta name="keywords" content="Agile documentation, project rework, Scrum, project management, Opeyemi Babarinde" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How Better Documentation Reduces Project Rework in Agile Teams" />
+  <meta property="og:description" content="Practical ways documentation improves delivery outcomes — from a Senior PM who's applied them in real fintech and product teams." />
+  <meta property="article:author" content="Opeyemi Abigail Babarinde" />
+  <meta property="article:published_time" content="2026-03-01" />
+  <link rel="canonical" href="https://opeyemi-abigail-babarinde.github.io/how-better-documentation-reduces-rework.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Better Documentation Reduces Project Rework in Agile Teams",
+    "author": { "@type": "Person", "name": "Opeyemi Abigail Babarinde", "url": "https://opeyemi-abigail-babarinde.github.io" },
+    "datePublished": "2026-03-02",
+    "description": "Practical ways documentation improves delivery outcomes in Agile teams."
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #111118; --ink-mid: #3d3a4a; --ink-muted: #6e6a7c;
+      --lilac: #c4b5f4; --lilac-deep: #8b72d8; --lilac-soft: #ede8fd; --lilac-mid: #a594e8;
+      --cream: #faf9f7; --white: #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--lilac-mid); border-radius: 4px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1rem 5vw; background: rgba(250,249,247,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(196,181,244,0.2); }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--lilac-deep); font-style: italic; }
+    .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; text-decoration: none; color: var(--ink-muted); transition: color 0.2s; padding: 0.4rem 0.8rem; border-radius: 6px; }
+    .nav-links a:hover { color: var(--lilac-deep); background: var(--lilac-soft); }
+    .nav-links .ncta { background: var(--ink) !important; color: var(--white) !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; }
+    .nav-links .ncta:hover { background: var(--lilac-deep) !important; }
+
+    /* READING PROGRESS BAR */
+    .progress-bar { position: fixed; top: 65px; left: 0; height: 2px; background: var(--lilac-deep); width: 0%; z-index: 199; transition: width 0.1s; }
+
+    /* ARTICLE HERO */
+    .article-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
+    .article-hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(196,181,244,0.08) 0%, transparent 70%); }
+    .hero-inner { max-width: 760px; position: relative; z-index: 1; }
+    .article-breadcrumb { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 2rem; }
+    .article-breadcrumb a { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .article-breadcrumb a:hover { color: var(--lilac); }
+    .article-breadcrumb span { color: rgba(255,255,255,0.2); font-size: 0.75rem; }
+    .article-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lilac); background: rgba(196,181,244,0.12); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem; border: 1px solid rgba(196,181,244,0.2); }
+    .article-hero-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.4rem); color: var(--white); line-height: 1.15; margin-bottom: 1.5rem; }
+    .article-hero-title em { font-style: italic; color: var(--lilac); }
+    .article-hero-desc { font-size: 1.05rem; line-height: 1.85; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .meta-author { display: flex; align-items: center; gap: 0.8rem; }
+    .meta-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--lilac-deep), var(--lilac-mid)); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 0.9rem; color: white; }
+    .meta-name { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+    .meta-role { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+    .meta-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.1); }
+    .meta-detail { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+    .meta-detail strong { display: block; color: rgba(255,255,255,0.7); font-size: 0.8rem; }
+
+    /* ARTICLE BODY */
+    .article-layout { display: grid; grid-template-columns: 1fr 260px; gap: 5rem; max-width: 1100px; margin: 0 auto; padding: 5rem 5vw; align-items: start; }
+    .article-content { max-width: 680px; }
+
+    /* TYPOGRAPHY */
+    .article-content p { font-size: 1.02rem; line-height: 1.9; color: var(--ink-mid); margin-bottom: 1.5rem; }
+    .article-content h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--ink); margin: 3rem 0 1rem; line-height: 1.2; }
+    .article-content h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin: 2rem 0 0.8rem; }
+    .article-content ul, .article-content ol { padding-left: 0; margin-bottom: 1.5rem; list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .article-content li { font-size: 1rem; line-height: 1.8; color: var(--ink-mid); display: flex; align-items: flex-start; gap: 0.8rem; }
+    .article-content li::before { content: '→'; color: var(--lilac-deep); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+    .article-content ol { counter-reset: article-counter; }
+    .article-content ol li { counter-increment: article-counter; }
+    .article-content ol li::before { content: counter(article-counter); background: var(--lilac-deep); color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.2rem; }
+    .article-content strong { color: var(--ink); font-weight: 700; }
+
+    /* PULLQUOTE */
+    .pullquote { background: var(--lilac-soft); border-left: 3px solid var(--lilac-deep); border-radius: 0 1rem 1rem 0; padding: 1.8rem 2rem; margin: 2.5rem 0; }
+    .pullquote p { font-family: var(--serif); font-size: 1.25rem; color: var(--lilac-deep); line-height: 1.6; margin: 0; font-style: italic; }
+
+    /* KEY TAKEAWAYS BOX */
+    .takeaways-box { background: var(--ink); border-radius: 1.2rem; padding: 2rem; margin: 3rem 0; }
+    .takeaways-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); margin-bottom: 1.2rem; }
+    .takeaways-box li { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .takeaways-box li::before { color: var(--lilac); }
+
+    /* RESULTS BOX */
+    .results-box { background: linear-gradient(135deg, rgba(139,114,216,0.08), rgba(196,181,244,0.05)); border: 1px solid rgba(196,181,244,0.2); border-radius: 1.2rem; padding: 2rem; margin: 2.5rem 0; }
+    .results-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-deep); margin-bottom: 1rem; }
+    .results-box li::before { color: var(--lilac-deep); }
+
+    /* NUMBERED SECTION */
+    .numbered-section { border-top: 1px solid rgba(196,181,244,0.2); padding-top: 2rem; margin-top: 2rem; }
+    .numbered-section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+    .ns-num { font-family: var(--serif); font-size: 2rem; color: rgba(139,114,216,0.25); line-height: 1; flex-shrink: 0; }
+    .ns-title { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
+
+    /* SIDEBAR */
+    .article-sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--white); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(196,181,244,0.15); }
+    .sidebar-card-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lilac-deep); margin-bottom: 1rem; }
+    .toc-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(196,181,244,0.1); cursor: pointer; text-decoration: none; }
+    .toc-item:last-child { border-bottom: none; }
+    .toc-num { font-size: 0.65rem; font-weight: 700; color: var(--lilac-deep); flex-shrink: 0; margin-top: 0.15rem; width: 16px; }
+    .toc-text { font-size: 0.78rem; color: var(--ink-mid); line-height: 1.5; transition: color 0.2s; }
+    .toc-item:hover .toc-text { color: var(--lilac-deep); }
+    .author-card-avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; margin-bottom: 1rem; border: 2px solid rgba(196,181,244,0.25); }
+    .author-card-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .author-card-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .author-card-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lilac-deep); margin-bottom: 0.8rem; }
+    .author-card-bio { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 1rem; }
+    .author-card-link { font-size: 0.78rem; font-weight: 700; color: var(--lilac-deep); text-decoration: none; }
+    .author-card-link:hover { text-decoration: underline; }
+
+    /* ARTICLE END */
+    .article-end { background: var(--white); border-top: 1px solid rgba(196,181,244,0.15); padding: 5rem 5vw; }
+    .article-end-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .article-end-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-deep); margin-bottom: 1rem; }
+    .article-end-title { font-family: var(--serif); font-size: 2rem; color: var(--ink); margin-bottom: 1rem; }
+    .article-end-title em { font-style: italic; color: var(--lilac-deep); }
+    .article-end-desc { font-size: 0.93rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: 2rem; }
+    .article-end-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--ink); color: white; padding: 0.9rem 2rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: all 0.25s; }
+    .btn-primary:hover { background: var(--lilac-deep); transform: translateY(-2px); }
+    .btn-secondary { border: 1px solid rgba(139,114,216,0.3); color: var(--lilac-deep); padding: 0.9rem 2rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: all 0.25s; }
+    .btn-secondary:hover { background: var(--lilac-soft); transform: translateY(-2px); }
+
+    footer { background: var(--ink); border-top: 1px solid rgba(196,181,244,0.1); color: rgba(255,255,255,0.3); text-align: center; padding: 2rem 5vw; font-size: 0.78rem; line-height: 1.8; }
+    footer a { color: var(--lilac); text-decoration: none; }
+
+    /* ── HAMBURGER ── */
+    .hb { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; z-index: 300; }
+    .hb span { width: 24px; height: 2px; background: var(--ink); transition: all 0.35s ease; }
+    .hb.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hb.active span:nth-child(2) { opacity: 0; }
+    .hb.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── OVERLAY ── */
+    .nav-overlay { position: fixed; inset: 0; background: rgba(17,17,24,0.35); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 198; }
+    .nav-overlay.active { opacity: 1; pointer-events: all; }
+
+    @media (max-width: 900px) {
+      .article-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .article-sidebar { position: static; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 1.5rem; box-shadow: -20px 0 60px rgba(0,0,0,0.08); transition: right 0.4s cubic-bezier(.77,0,.18,1); z-index: 250; }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 0.9rem; }
+      .hb { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Ope <span>Babarinde</span></a>
+
+    <button class="hb" id="hb" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#summary">Portfolio</a></li>
+      <li><a href="index.html#case-studies">Case Studies</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="index.html#contact" class="ncta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ARTICLE HERO -->
+  <header class="article-hero">
+    <div class="hero-inner">
+      <div class="article-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="articles.html">Articles</a>
+        <span>/</span>
+        <a href="#">Agile & Delivery</a>
+      </div>
+      <div class="article-tag">🔄 Agile & Delivery</div>
+      <h1 class="article-hero-title">How Better Documentation Reduces<br><em>Project Rework</em> in Agile Teams</h1>
+      <p class="article-hero-desc">One of the biggest hidden costs in product development is rework. Here's how structured documentation changes that.</p>
+      <div class="article-meta">
+        <div class="meta-author">
+          <div class="meta-avatar">OB</div>
+          <div>
+            <div class="meta-name">Opeyemi Abigail Babarinde</div>
+            <div class="meta-role">Senior Project Manager & Scrum Master</div>
+          </div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-detail"><strong>March 2026</strong>7 min read</div>
+        <div class="meta-divider"></div>
+        <div class="meta-detail"><strong>Topics</strong>Agile · Documentation · Delivery</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARTICLE BODY + SIDEBAR -->
+  <div class="article-layout">
+
+    <article class="article-content">
+
+      <p>One of the biggest hidden costs in product development is rework.</p>
+
+      <p>In fast-paced Agile environments, teams often move quickly but not always with enough clarity. Misaligned expectations, unclear requirements, and inconsistent communication can lead to repeated revisions, missed details, and delivery delays.</p>
+
+      <p>As a Project Manager and Scrum Master, I've seen how poor documentation creates friction and how clear, structured documentation can significantly reduce rework and improve delivery speed.</p>
+
+      <p>This article shares practical ways documentation can improve delivery outcomes and how I've applied them in real projects.</p>
+
+      <h2 id="cost-of-rework">The Real Cost of Rework</h2>
+
+      <p>Rework doesn't just affect timelines. It has a compounding effect across everything the team is trying to achieve:</p>
+
+      <ul>
+        <li>Team morale dwindles when the same work has to be done multiple times</li>
+        <li>Engineering efficiency drops as developers context-switch back to resolved work</li>
+        <li>Design consistency suffers when feedback is constantly iterative</li>
+        <li>Stakeholder confidence weakens when delivery feels unpredictable</li>
+        <li>Product quality is compromised when decisions aren't traceable</li>
+      </ul>
+
+      <p>In one of the product teams I worked with, unclear documentation and fragmented feedback led to multiple revision cycles across design and engineering, slowing down delivery and increasing frustration across teams. We needed a better system.</p>
+
+      <div class="pullquote">
+        <p>"The goal is to create just enough structured information so that teams understand what they are building, stakeholders stay aligned, and work doesn't have to be repeated."</p>
+      </div>
+
+      <h2 id="agile-documentation">Why Documentation Matters in Agile Even When You Move Fast</h2>
+
+      <p>There's a common misconception that Agile means "less documentation."</p>
+
+      <p>In reality, Agile values <strong>useful documentation</strong> not the absence of it. The goal is to create just enough structured information so that:</p>
+
+      <ul>
+        <li>Teams understand what they are building</li>
+        <li>Stakeholders stay aligned throughout</li>
+        <li>Decisions are traceable and revisitable</li>
+        <li>Work doesn't have to be repeated due to lost context</li>
+      </ul>
+
+      <h2 id="five-ways">5 Ways Better Documentation Reduces Rework</h2>
+
+      <div class="numbered-section">
+        <div class="numbered-section-header">
+          <div class="ns-num">01</div>
+          <div class="ns-title">Clear Project Briefs Prevent Misalignment Early</div>
+        </div>
+        <p>Every project should start with a clear, shared understanding of objectives, scope, constraints, and success metrics. When these are documented and accessible, teams spend less time guessing and more time executing. A brief that everyone has read and agreed to is worth ten stand-up calls.</p>
+      </div>
+
+      <div class="numbered-section">
+        <div class="numbered-section-header">
+          <div class="ns-num">02</div>
+          <div class="ns-title">Structured Feedback Reduces Endless Revision Loops</div>
+        </div>
+        <p>Unstructured feedback like "I don't like this" leads to confusion and repeated revisions. Instead, I introduced structured feedback formats that capture what is working, what needs improvement, specific change requests, and priority level. This reduced design revision cycles significantly and made approvals faster.</p>
+      </div>
+
+      <div class="numbered-section">
+        <div class="numbered-section-header">
+          <div class="ns-num">03</div>
+          <div class="ns-title">Decision Logs Prevent Repeated Conversations</div>
+        </div>
+        <p>Teams often revisit the same decisions because there is no record of what was agreed. Maintaining a simple decision log ensures teams don't reopen resolved discussions, stakeholders remain aligned, and new team members can quickly get up to speed without lengthy onboarding calls.</p>
+      </div>
+
+      <div class="numbered-section">
+        <div class="numbered-section-header">
+          <div class="ns-num">04</div>
+          <div class="ns-title">Centralised Documentation Improves Team Visibility</div>
+        </div>
+        <p>When information is scattered across Slack, email, and meetings, things get lost. By building a centralised workspace — in tools like Notion — teams can easily access tasks, requirements, timelines, feedback, and updates in one place. This reduces confusion and improves accountability across teams.</p>
+      </div>
+
+      <div class="numbered-section">
+        <div class="numbered-section-header">
+          <div class="ns-num">05</div>
+          <div class="ns-title">Proper Sprint Documentation Improves Delivery Consistency</div>
+        </div>
+        <p>Sprint planning, backlog grooming, and retrospectives become more effective when outcomes are documented and tracked. This allows teams to learn from previous sprints, identify recurring issues, and improve delivery speed over time through genuine institutional learning rather than starting fresh each cycle.</p>
+      </div>
+
+      <h2 id="real-impact">Real Impact from Applying These Systems</h2>
+
+      <p>After implementing structured documentation systems, the results were tangible and consistent:</p>
+
+      <div class="results-box">
+        <div class="results-label">Outcomes observed</div>
+        <ul>
+          <li>Design rework reduced significantly across active projects</li>
+          <li>Team communication became clearer and less repetitive</li>
+          <li>Stakeholder approvals became faster with structured review gates</li>
+          <li>Delivery timelines became more predictable sprint over sprint</li>
+          <li>Team confidence and individual accountability both improved</li>
+        </ul>
+      </div>
+
+      <p>The biggest shift wasn't just process it was clarity. When people know where to find information, what decisions have been made, and what's expected of them, they move faster and with more confidence.</p>
+
+      <h2 id="key-takeaways">Key Takeaways</h2>
+
+      <div class="takeaways-box">
+        <div class="takeaways-label">If you want to reduce rework in Agile teams</div>
+        <ul>
+          <li>Start every project with a clear, shared brief</li>
+          <li>Standardise how feedback is given and recorded</li>
+          <li>Document key decisions so they don't resurface</li>
+          <li>Centralise information so nothing lives only in someone's head</li>
+          <li>Track sprint learnings and act on them consistently</li>
+        </ul>
+      </div>
+
+      <p>Documentation is not about bureaucracy it's about making work easier and more efficient for everyone involved.</p>
+
+      <h2 id="final-thoughts">Final Thoughts</h2>
+
+      <p>Good documentation doesn't slow teams down it helps them move faster with fewer mistakes.</p>
+
+      <p>As Project Managers and Scrum Masters, one of the most valuable things we can do is create systems that support clarity, alignment, and execution. When teams have the right information at the right time, delivery improves naturally.</p>
+
+      <p>The teams that document well don't do so because they love paperwork. They do it because they've learned that clarity is the fastest route to delivery.</p>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">In this article</div>
+        <a href="#cost-of-rework" class="toc-item"><span class="toc-num">01</span><span class="toc-text">The Real Cost of Rework</span></a>
+        <a href="#agile-documentation" class="toc-item"><span class="toc-num">02</span><span class="toc-text">Why Documentation Matters in Agile</span></a>
+        <a href="#five-ways" class="toc-item"><span class="toc-num">03</span><span class="toc-text">5 Ways Documentation Reduces Rework</span></a>
+        <a href="#real-impact" class="toc-item"><span class="toc-num">04</span><span class="toc-text">Real Impact from Applying These Systems</span></a>
+        <a href="#key-takeaways" class="toc-item"><span class="toc-num">05</span><span class="toc-text">Key Takeaways</span></a>
+        <a href="#final-thoughts" class="toc-item"><span class="toc-num">06</span><span class="toc-text">Final Thoughts</span></a>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-card-label">Written by</div>
+        <div class="author-card-name">Opeyemi Abigail Babarinde</div>
+        <div class="author-card-role">Senior Project Manager & Scrum Master</div>
+        <p class="author-card-bio">PSM1 certified PM with 3+ years delivering fintech, brand, and digital product projects. I write about delivery, agile practice, and building systems that help teams do their best work.</p>
+        <a href="https://www.linkedin.com/in/opeyemi-abigail-babarinde" target="_blank" class="author-card-link">Connect on LinkedIn ↗</a>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ARTICLE END CTA -->
+  <div class="article-end">
+    <div class="article-end-inner">
+      <div class="article-end-label">What's next</div>
+      <h2 class="article-end-title">View more <em>work & writing</em></h2>
+      <p class="article-end-desc">Explore my project case studies, or connect on LinkedIn where I share new articles and project management insights regularly.</p>
+      <div class="article-end-btns">
+        <a href="index.html#case-studies" class="btn-primary">View Case Studies</a>
+        <a href="articles.html" class="btn-secondary">More Articles</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Opeyemi Abigail Babarinde — Senior Project Manager & Scrum Master</p>
+    <p style="margin-top:0.4rem;"><a href="/cdn-cgi/l/email-protection#3a585b585b4853545e5f554a5f435f57530d7a5d575b535614595557"><span class="__cf_email__" data-cfemail="d2b0b3b0b3a0bbbcb6b7bda2b7abb7bfbbe592b5bfb3bbbefcb1bdbf">[email&#160;protected]</span></a> · <a href="https://www.linkedin.com/in/opeyemi-abigail-babarinde" target="_blank">LinkedIn</a></p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Reading progress bar
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const progress = scrollTop / scrollHeight * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+    }, { passive: true });
+
+    // Hamburger nav
+    const hb = document.getElementById('hb');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('navOverlay');
+
+    function openNav() {
+      hb.classList.add('active');
+      navLinks.classList.add('open');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+      hb.classList.remove('active');
+      navLinks.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hb.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeNav() : openNav();
+    });
+
+    overlay.addEventListener('click', closeNav);
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', closeNav);
+    });
+  </script>
+</body>
+</html>
