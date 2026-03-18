@@ -57,7 +57,7 @@
 
     /* FILTERS */
     .filters-bar { background: var(--white); border-bottom: 1px solid rgba(196,181,244,0.15); padding: 1rem 5vw; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
-    <input 
+     
   type="text" 
   id="searchInput" 
   placeholder="Search articles..." 
@@ -220,6 +220,9 @@
   <main class="articles-wrap">
     <p class="articles-count" id="articlesCount"><strong id="visibleCount">4</strong> articles</p>
     <div class="articles-grid" id="articlesGrid">
+    <div style="text-align:center; margin-top:2rem;">
+  <button id="loadMoreBtn" class="filter-btn">Load more</button>
+</div>
 
       <!-- FEATURED ARTICLE -->
       <article class="article-card featured reveal" data-category="agile-delivery">
@@ -261,7 +264,6 @@
         </div>
       </article>
 <script src="articles.js"></script>
-<div class="articles-grid" id="articlesGrid"></div>
   </main>
 
   <!-- NEWSLETTER / CONNECT -->
@@ -300,9 +302,6 @@ const loadMoreBtn = document.getElementById('loadMoreBtn');
 let activeFilter = 'all';
 let searchQuery = '';
 let visibleLimit = 4; // initial visible articles
-
-    // Article js
-    const grid = document.getElementById('articlesGrid');
 
 function createArticleCard(article) {
   if (article.comingSoon) {
@@ -368,11 +367,7 @@ filterBtns.forEach(btn => {
   const count = filter === 'all'
     ? articleCards.length
     : articleCards.filter(c => c.getAttribute('data-category') === filter).length;
-
-  const badge = document.createElement('span');
-  badge.className = 'filter-count';
-  badge.textContent = count;
-  btn.appendChild(badge);
+  const badge = document.createElement('span'); badge.className = 'filter-count'; badge.textContent = count; btn.appendChild(badge);
 });
 
 function updateArticles() {
@@ -381,26 +376,19 @@ function updateArticles() {
   // Remove empty state if exists
   const existing = grid.querySelector('.no-results');
   if (existing) existing.remove();
-
   const filtered = articleCards.filter(card => {
     const category = card.getAttribute('data-category');
     const title = card.querySelector('.article-title').textContent.toLowerCase();
     const excerpt = card.querySelector('.article-excerpt').textContent.toLowerCase();
-
     const matchesFilter = activeFilter === 'all' || category === activeFilter;
     const matchesSearch = title.includes(searchQuery) || excerpt.includes(searchQuery);
-
     return matchesFilter && matchesSearch;
   });
 
   // Show only up to visibleLimit
   articleCards.forEach(card => card.classList.add('hidden'));
-
-  filtered.slice(0, visibleLimit).forEach(card => {
-    card.classList.remove('hidden');
-    visible++;
+  filtered.slice(0, visibleLimit).forEach(card => { card.classList.remove('hidden'); visible++;
   });
-
   visibleCountEl.textContent = filtered.length;
 
   // Handle Load More visibility
@@ -451,14 +439,13 @@ filterBtns.forEach(btn => {
 
 // SEARCH INPUT
 searchInput.addEventListener('input', function () {
-  searchQuery = this.value.toLowerCase();
-  visibleLimit = 4; // reset
-  updateArticles();
+searchQuery = this.value.toLowerCase();
+visibleLimit = 4; // reset
+updateArticles();
 });
 
 // LOAD MORE
-loadMoreBtn.addEventListener('click', () => {
-  visibleLimit += 3;
+loadMoreBtn.addEventListener('click', () => { visibleLimit += 3;
   updateArticles();
 });
 
