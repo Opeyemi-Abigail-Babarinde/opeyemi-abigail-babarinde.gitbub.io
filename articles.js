@@ -35,7 +35,8 @@ const articles = [
   }
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
+  {
 const grid = document.getElementById('articlesGrid');
 const visibleCountEl = document.getElementById('visibleCount');
 const filterBtns = document.querySelectorAll('[data-filter]');
