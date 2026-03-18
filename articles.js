@@ -159,6 +159,7 @@ filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-});
+
     filterArticles(btn.getAttribute('data-filter'));
   });
+});
