@@ -35,6 +35,7 @@ const articles = [
   }
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
 const grid = document.getElementById('articlesGrid');
 const visibleCountEl = document.getElementById('visibleCount');
 const filterBtns = document.querySelectorAll('[data-filter]');
@@ -159,7 +160,7 @@ filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
+});
     filterArticles(btn.getAttribute('data-filter'));
   });
 });
