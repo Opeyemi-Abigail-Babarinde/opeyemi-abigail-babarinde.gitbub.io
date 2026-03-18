@@ -49,8 +49,12 @@ const revealObs = new IntersectionObserver(entries => {
 function renderArticles(list) {
   grid.innerHTML = '';
 
-  list.forEach(article => {
-    const el = document.createElement('article');
+ const sorted = [
+  ...list.filter(a => a.featured),
+  ...list.filter(a => !a.featured)
+];
+
+sorted.forEach(article => {
 
     let classes = 'article-card reveal';
     if (article.featured) classes += ' featured';
@@ -61,7 +65,20 @@ function renderArticles(list) {
 
     if (article.featured) {
       el.innerHTML = `
-        <div class="article-card-visual"></div>
+     <div class="article-card-visual" style="background: linear-gradient(135deg, #1a1228 0%, #2d1f4e 50%, #1a1228 100%);">
+  <div class="article-card-visual-inner" style="flex-direction:column; gap:1.5rem; padding:3rem;">
+    <div style="font-family:'DM Serif Display',serif; font-size:3.5rem; color:rgba(196,181,244,0.15); line-height:1; text-align:center;">"</div>
+    <div style="display:flex; flex-direction:column; gap:0.8rem; width:100%;">
+      <div style="height:3px; background:linear-gradient(90deg, #8b72d8, transparent); width:80%;"></div>
+      <div style="height:3px; background:linear-gradient(90deg, #8b72d8, transparent); width:60%;"></div>
+      <div style="height:3px; background:linear-gradient(90deg, #8b72d8, transparent); width:70%;"></div>
+      <div style="height:3px; background:linear-gradient(90deg, #8b72d8, transparent); width:45%;"></div>
+    </div>
+    <div style="background:rgba(196,181,244,0.1); border:1px solid rgba(196,181,244,0.2); border-radius:0.6rem; padding:0.8rem 1.2rem; font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--lilac);">
+      Featured Article
+    </div>
+  </div>
+</div>
         <div class="article-card-body">
           <span class="article-tag">${article.tag}</span>
           <h2 class="article-title">${article.title}</h2>
