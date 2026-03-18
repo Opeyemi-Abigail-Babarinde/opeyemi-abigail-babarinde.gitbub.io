@@ -2,22 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const articles = [
     {
-    title: "How Better Documentation Reduces Project Rework in Agile Teams",
+    title: "Why Stakeholder Communication Is the Hardest Part of Any Project",
+     category: "career-growth",
+     tag: "🤝 Career & Growth",
+     excerpt: "The technical side of delivery is learnable...",
+     excerpt: "One of the biggest hidden...",
+     date: "April 2026",
+     readTime: "5 min read",
+     link: "how-better-documentation-reduces-rework.html",
+     featured: true
+  },
+
+  {
+   title: "How Better Documentation Reduces Project Rework in Agile Teams",
     category: "agile-delivery",
     tag: "🔄 Agile & Delivery",
     excerpt: "One of the biggest hidden costs in product development is rework...",
     date: "March 2026",
     readTime: "7 min read",
     link: "how-better-documentation-reduces-rework.html",
-    featured: true
-  },
-
-  {
-    title: "Why Stakeholder Communication Is the Hardest Part of Any Project",
-    category: "career-growth",
-    tag: "🤝 Career & Growth",
-    excerpt: "The technical side of delivery is learnable...",
-    comingSoon: true
   },
 
   {
